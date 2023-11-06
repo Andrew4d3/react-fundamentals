@@ -19,7 +19,13 @@
     // 💣 So go ahead and delete this implementation (or comment it out for now)
     // These three lines are similar to React.createElement
 
-    const elementProps = {children: 'Hello World', className: 'container'}
+    const helloSpan = React.createElement('span', {}, 'Hello')
+    const worldSpan = React.createElement('span', {children: 'World'}) // Another way
+
+    const elementProps = {
+      children: [helloSpan, ' ', worldSpan], // We can also pass the children as arguments
+      className: 'container',
+    }
 
     const reactElement = React.createElement('div', elementProps)
 
