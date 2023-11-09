@@ -8,10 +8,11 @@
   <!-- What this does is to translate our JSX code to plain JS code -->
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   <script type="text/babel">
-    const MyReactComponent = () => <div className="container">Hello World</div> // Now we can define react components like this
+    const myClassName = 'container'
+    const myChildren = 'Hello World'
 
-    ReactDOM.createRoot(document.getElementById('root')).render(
-      <MyReactComponent />,
-    )
+    const myComponent = <div className={myClassName}>{myChildren}</div>
+
+    ReactDOM.createRoot(document.getElementById('root')).render(myComponent)
   </script>
 </body>
