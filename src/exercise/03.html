@@ -8,10 +8,10 @@
   <!-- What this does is to translate our JSX code to plain JS code -->
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   <script type="text/babel">
-    const myClassName = 'container'
-    const myChildren = 'Hello World'
+    const myProps = {className: 'container', children: 'Hello World'}
 
-    const myComponent = <div className={myClassName}>{myChildren}</div>
+    // Since classname comes last, we're overwriting its value, if it were first the one from props will take precedence
+    const myComponent = <div {...myProps} className="default" />
 
     ReactDOM.createRoot(document.getElementById('root')).render(myComponent)
   </script>
