@@ -7,13 +7,34 @@
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
   <script type="text/babel">
-    const Message = ({children}) => <div className="message">{children}</div>
+    function Message({subject, greeting}) {
+      return (
+        <div className="message">
+          {greeting}, {subject}
+        </div>
+      )
+    }
+
+    const PropTypes = {
+      string: (props, propName, componentName) => {
+        if (typeof props[propName] !== 'string') {
+          console.warn(
+            `Prop ${propName} in component ${componentName} is not string`,
+          )
+        }
+      },
+    }
+
+    Message.propTypes = {
+      subject: PropTypes.string,
+      greeting: PropTypes.string,
+    }
 
     // Anything between opening and closing tags will be taken as a children argument
     const element = (
       <div className="container">
-        <Message>Hello World!</Message>
-        <Message>Goodbye World!</Message>
+        <Message greeting="Hello" subject={2} />
+        <Message greeting="Goodbye" subject="World" />
       </div>
     )
 
