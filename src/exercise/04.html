@@ -6,6 +6,7 @@
   <script src="https://unpkg.com/react@18.1.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@18.1.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.12.4/babel.js"></script>
+  <script src="https://unpkg.com/prop-types@15.7.2/prop-types.js"></script>
   <script type="text/babel">
     function Message({subject, greeting}) {
       return (
@@ -15,26 +16,16 @@
       )
     }
 
-    const PropTypes = {
-      string: (props, propName, componentName) => {
-        if (typeof props[propName] !== 'string') {
-          console.warn(
-            `Prop ${propName} in component ${componentName} is not string`,
-          )
-        }
-      },
-    }
-
     Message.propTypes = {
       subject: PropTypes.string,
-      greeting: PropTypes.string,
+      greeting: PropTypes.string.isRequired, // We can use additional helpers like Required
     }
 
     // Anything between opening and closing tags will be taken as a children argument
     const element = (
       <div className="container">
         <Message greeting="Hello" subject={2} />
-        <Message greeting="Goodbye" subject="World" />
+        <Message subject="World" />
       </div>
     )
 
