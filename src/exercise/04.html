@@ -21,12 +21,12 @@
       greeting: PropTypes.string.isRequired, // We can use additional helpers like Required
     }
 
-    // Anything between opening and closing tags will be taken as a children argument
+    // The tags <> and </> are the shorthand of React.Fragment
     const element = (
-      <div className="container">
+      <>
         <Message greeting="Hello" subject={2} />
         <Message subject="World" />
-      </div>
+      </>
     )
 
     // 💯 This is only the first step to making actual React components. The rest is in the extra credit!
