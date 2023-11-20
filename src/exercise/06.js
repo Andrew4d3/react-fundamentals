@@ -3,27 +3,22 @@
 
 import * as React from 'react'
 
-const isLowerCase = str => str.toLowerCase() === str
-const LOWERCASE_ERROR_MSG = 'Username must be lower case'
-
 function UsernameForm({onSubmitUsername}) {
   const usernameRef = React.useRef(null)
-  const [error, setError] = React.useState(LOWERCASE_ERROR_MSG)
+  const [username, setUsername] = React.useState('')
 
   const handleSubmit = event => {
     event.preventDefault() // this will prevent the browser to refresh
 
-    const inputValue = usernameRef.current.value
-    // Here we're making sure we're submiting something that is validated
-    if (isLowerCase(inputValue)) {
-      onSubmitUsername(inputValue)
-    }
+    // Since now our input value is being controlled by a react state, we don't
+    // need to use ref anymore
+    onSubmitUsername(username)
   }
 
   // To handle any change on the input value
   const handleChange = event => {
     const {value} = event.target
-    setError(isLowerCase(value) ? null : LOWERCASE_ERROR_MSG)
+    setUsername(value.toLowerCase())
   }
 
   return (
@@ -33,18 +28,12 @@ function UsernameForm({onSubmitUsername}) {
         <input
           id="username"
           ref={usernameRef}
+          value={username}
           type="text"
           onChange={handleChange}
         />
       </div>
-      {!!error ? (
-        <div role="alert" style={{color: 'red'}}>
-          {error}
-        </div>
-      ) : null}
-      <button type="submit" disabled={!!error}>
-        Submit
-      </button>
+      <button type="submit">Submit</button>
     </form>
   )
 }
